@@ -33,5 +33,9 @@
   "devDependencies": {
     "@types/graphql": "^14.5.0",
     "graphql": "15.1.0"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "14f49356636aea00d83ff33d6c8a6b7d375557d9"
 }
