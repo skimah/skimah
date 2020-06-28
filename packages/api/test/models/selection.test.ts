@@ -43,7 +43,7 @@ const noopSource = () => ({
   select: jest.fn(),
   create: jest.fn(),
   update: jest.fn(),
-  delete: jest.fn(),
+  delete: jest.fn()
 });
 
 describe("Schema Selection", () => {
@@ -54,15 +54,15 @@ describe("Schema Selection", () => {
       sources: {
         mongo: noopSource(),
         default: {
-          select: (sel) => {
+          select: sel => {
             selection = sel;
             return Promise.all([]);
           },
           create: jest.fn(),
           update: jest.fn(),
-          delete: jest.fn(),
-        },
-      },
+          delete: jest.fn()
+        }
+      }
     });
 
     const query = `
@@ -122,15 +122,15 @@ describe("Schema Selection", () => {
       sources: {
         mongo: noopSource(),
         default: {
-          select: (sel) => {
+          select: sel => {
             selection = sel;
             return Promise.all([]);
           },
           create: jest.fn(),
           update: jest.fn(),
-          delete: jest.fn(),
-        },
-      },
+          delete: jest.fn()
+        }
+      }
     });
 
     const query = `
@@ -175,15 +175,15 @@ describe("Schema Selection", () => {
       sources: {
         mongo: noopSource(),
         default: {
-          select: (sel) => {
+          select: sel => {
             selection = sel;
             return Promise.all([]);
           },
           create: jest.fn(),
           update: jest.fn(),
-          delete: jest.fn(),
-        },
-      },
+          delete: jest.fn()
+        }
+      }
     });
 
     const query = `
@@ -217,15 +217,15 @@ describe("Schema Selection", () => {
       sources: {
         mongo: noopSource(),
         default: {
-          select: (sel) => {
+          select: sel => {
             selection = sel;
             return Promise.all([]);
           },
           create: jest.fn(),
           update: jest.fn(),
-          delete: jest.fn(),
-        },
-      },
+          delete: jest.fn()
+        }
+      }
     });
 
     const query = `
@@ -293,15 +293,15 @@ describe("Schema Selection", () => {
       sources: {
         mongo: noopSource(),
         default: {
-          select: (sel) => {
+          select: sel => {
             selection = sel;
             return Promise.all([]);
           },
           create: jest.fn(),
           update: jest.fn(),
-          delete: jest.fn(),
-        },
-      },
+          delete: jest.fn()
+        }
+      }
     });
 
     const query = `
@@ -423,35 +423,35 @@ describe("Schema Selection", () => {
       select: jest.fn(() =>
         Promise.resolve([
           {
-            videoID: "first-video",
-          },
+            videoID: "first-video"
+          }
         ])
       ),
       create: jest.fn(),
       update: jest.fn(),
-      delete: jest.fn(),
+      delete: jest.fn()
     };
 
     const mongoSource: Datasource = {
-      select: jest.fn((selection) => {
+      select: jest.fn(selection => {
         mongoSelection = selection;
         return Promise.resolve([
           {
-            text: "first video comments",
-          },
+            text: "first video comments"
+          }
         ]);
       }),
       create: jest.fn(),
       update: jest.fn(),
-      delete: jest.fn(),
+      delete: jest.fn()
     };
 
     const { schema } = await blueprint({
       typeDefs,
       sources: {
         default: defaultSource,
-        mongo: mongoSource,
-      },
+        mongo: mongoSource
+      }
     });
 
     const query = `
@@ -491,35 +491,35 @@ describe("Schema Selection", () => {
       select: jest.fn(() =>
         Promise.resolve([
           {
-            videoID: "first-video",
-          },
+            videoID: "first-video"
+          }
         ])
       ),
       create: jest.fn(),
       update: jest.fn(),
-      delete: jest.fn(),
+      delete: jest.fn()
     };
 
     const mongoSource: Datasource = {
-      select: jest.fn((selection) => {
+      select: jest.fn(selection => {
         mongoSelection = selection;
         return Promise.resolve([
           {
-            text: "first video comments",
-          },
+            text: "first video comments"
+          }
         ]);
       }),
       create: jest.fn(),
       update: jest.fn(),
-      delete: jest.fn(),
+      delete: jest.fn()
     };
 
     const { schema } = await blueprint({
       typeDefs,
       sources: {
         default: defaultSource,
-        mongo: mongoSource,
-      },
+        mongo: mongoSource
+      }
     });
 
     const query = `
@@ -585,35 +585,35 @@ describe("Schema Selection", () => {
     let mongoSelection: QueryModel;
 
     const defaultSource: Datasource = {
-      select: jest.fn((selection) => {
+      select: jest.fn(selection => {
         defaultSelection = selection;
         return Promise.resolve([
           {
-            userId: "demo-person",
-          },
+            userId: "demo-person"
+          }
         ]);
       }),
       create: jest.fn(),
       update: jest.fn(),
-      delete: jest.fn(),
+      delete: jest.fn()
     };
 
     const mongoSource: Datasource = {
-      select: jest.fn((selection) => {
+      select: jest.fn(selection => {
         mongoSelection = selection;
         return Promise.resolve([]);
       }),
       create: jest.fn(),
       update: jest.fn(),
-      delete: jest.fn(),
+      delete: jest.fn()
     };
 
     const { schema } = await blueprint({
       typeDefs,
       sources: {
         default: defaultSource,
-        mongo: mongoSource,
-      },
+        mongo: mongoSource
+      }
     });
 
     const query = `
@@ -645,15 +645,15 @@ describe("Schema Selection", () => {
       sources: {
         mongo: noopSource(),
         default: {
-          select: (sel) => {
+          select: sel => {
             selection = sel;
             return Promise.all([]);
           },
           create: jest.fn(),
           update: jest.fn(),
-          delete: jest.fn(),
-        },
-      },
+          delete: jest.fn()
+        }
+      }
     });
 
     const query = `

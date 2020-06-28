@@ -11,11 +11,13 @@
     "api"
   ],
   "scripts": {
+    "prepublish": "yarn build",
     "test": "jest --runInBand --detectOpenHandles --forceExit --no-cache",
     "test:api": "jest packages/api",
     "build": "echo 'coming soon'",
-    "pretty": "echo 'coming soon'",
-    "lint": "echo 'coming soon'"
+    "build:api": "yarn build:api",
+    "pretty": "prettier --write packages/**/*.{ts,js,yaml} site/**/*.{ts, tsx}",
+    "lint": "eslint packages/**/src/**/*.ts"
   },
   "dependencies": {
     "@commitlint/cli": "^8.3.5",
