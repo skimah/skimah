@@ -1,7 +1,7 @@
 {
   "name": "@skimah/api",
   "description": "Skimah's GraphQL API generation library",
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.0-alpha.5",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "keywords": [
@@ -37,5 +37,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "14f49356636aea00d83ff33d6c8a6b7d375557d9"
+  "gitHead": "eb0c5a4cbf890504563fb15e1017dfe789cccf6a"
 }
