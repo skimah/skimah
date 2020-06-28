@@ -7,6 +7,7 @@ import createRelations from "./relations";
 import createResolvers from "./resolvers";
 import createMutationResponse from "./response";
 import { Model, BlueprintConfig, BlueprintResult } from "./types";
+import { nullSource } from "./datasource";
 
 /**
  * @internal
@@ -52,6 +53,7 @@ const DEFAULT_TYPES = [
 
 export default async (config: BlueprintConfig): Promise<BlueprintResult> => {
   const schemaComposer = new SchemaComposer<any>();
+  const datasources = Object.assign({ default: nullSource }, config.sources);
 
   /**
    * Include the framework directives
@@ -90,7 +92,7 @@ export default async (config: BlueprintConfig): Promise<BlueprintResult> => {
     // add resolvers
     createResolvers({
       composer: schemaComposer,
-      datasources: config.sources,
+      datasources,
       type: <ObjectTypeComposer>tc,
       models
     });
@@ -99,7 +101,7 @@ export default async (config: BlueprintConfig): Promise<BlueprintResult> => {
      * Validate that datasources defined for defined types
      */
     const model: Model = models[typeName];
-    const modelSource = config.sources[model.datasource];
+    const modelSource = datasources[model.datasource];
     if (!modelSource) {
       return Promise.reject(
         `Schema: No datasource named ${model.datasource} found for ${typeName}`
@@ -123,7 +125,7 @@ export default async (config: BlueprintConfig): Promise<BlueprintResult> => {
    * Initialize all of the declare datasource with the models
    * attached to those datasources
    */
-  for (const [name, datasource] of Object.entries(config.sources)) {
+  for (const [name, datasource] of Object.entries(datasources)) {
     if (datasource.initialize) {
       try {
         const modelsAttachedToSource = modelsBySource[name] || [];
