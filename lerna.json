@@ -7,7 +7,7 @@
       "ignoreChanges": ["**/*.md", "**/*.json", "**/test/**", "examples/**/.*"],
       "conventionalCommits": true,
       "allowBranch": "master",
-      "registry": "https://npm.pkg.github.com",
+      "registry": "https://npm.pkg.com",
       "message": "chore(release): published"
     },
     "bootstrap": {
