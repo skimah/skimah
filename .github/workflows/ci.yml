@@ -43,3 +43,8 @@ jobs:
         run: |
           yarn test:ds-csv
           yarn build:ds-csv
+
+      - name: Faker
+        run: |
+          yarn test:ds-faker
+          yarn build:ds-faker

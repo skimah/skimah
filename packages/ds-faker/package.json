@@ -1,7 +1,7 @@
 {
-  "name": "@skimah/ds-csv",
-  "version": "0.1.0-alpha.9",
-  "description": "Skimah CSV Datasource",
+  "name": "@skimah/ds-faker",
+  "version": "0.1.0-alpha.8",
+  "description": "FakerJS Datasource for skimah",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -11,10 +11,9 @@
     "@skimah/api": "^0.1.0-alpha.6"
   },
   "keywords": [
-    "csv",
+    "fakerjs",
     "graphql",
-    "datasource",
-    "skimah datasource"
+    "blueprint datasource"
   ],
   "files": [
     "lib"
@@ -32,12 +31,9 @@
   "devDependencies": {
     "graphql": "15.1.0"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "gitHead": "a6edc2e9d8b37ed5a57f352942f2dc7eae495dc2",
   "dependencies": {
     "@skimah/ds-json": "^0.1.0-alpha.8",
-    "d3-dsv": "^1.2.0"
-  }
+    "faker": "^4.1.0"
+  },
+  "gitHead": "7d10ac44efe76cd8c90a82484401546878c8208b"
 }
