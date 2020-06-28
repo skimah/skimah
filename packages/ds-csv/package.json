@@ -1,7 +1,7 @@
 {
-  "name": "@skimah/ds-json",
+  "name": "@skimah/ds-csv",
   "version": "0.1.0-alpha.8",
-  "description": "Skimah JSON Datasource",
+  "description": "Skimah CSV Datasource",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -11,8 +11,9 @@
     "@skimah/api": "^0.1.0-alpha.6"
   },
   "keywords": [
-    "json",
+    "csv",
     "graphql",
+    "datasource",
     "skimah datasource"
   ],
   "files": [
@@ -35,5 +36,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "a6edc2e9d8b37ed5a57f352942f2dc7eae495dc2"
+  "gitHead": "a6edc2e9d8b37ed5a57f352942f2dc7eae495dc2",
+  "dependencies": {
+    "@skimah/ds-json": "^0.1.0-alpha.8",
+    "d3-dsv": "^1.2.0"
+  }
 }
