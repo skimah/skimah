@@ -33,3 +33,8 @@ jobs:
         run: |
           yarn test:api
           yarn build:api
+
+      - name: JSON
+        run: |
+          yarn test:ds-json
+          yarn build:ds-json
