@@ -1,4 +1,4 @@
-import blueprint from "../src/blueprint";
+import generate from "../src/generate";
 import { Datasource } from "../src/types";
 
 const typeDefs = `
@@ -19,7 +19,7 @@ describe("Schema Mutation", () => {
   };
 
   test("response", async () => {
-    const { schemaComposer } = await blueprint({
+    const { schemaComposer } = await generate({
       typeDefs,
       sources: {
         default: defaultSource

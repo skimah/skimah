@@ -15,7 +15,7 @@ import { nullSource } from "./datasource";
 const DIRECTIVES = `
     """ Attach a datasource to this type """
     directive @datasource(
-      """ The name of the datasource configured in the blueprint config """
+      """ The name of the datasource configured in the Skimah config """
       name: String
     ) on OBJECT
 

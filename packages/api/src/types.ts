@@ -421,7 +421,7 @@ export interface SkimahConfig {
 }
 
 /**
- *  The result of Skimahing a schema
+ *  The result of generating a Skimah API
  */
 export interface SkimahResult {
   /**
@@ -452,7 +452,7 @@ export interface SkimahResult {
 /**
  * Generate an API from schema
  */
-export interface skimah {
+export interface generate {
   /**
    * @param config Skimah configuration to modify the behavior
    * of the generated API

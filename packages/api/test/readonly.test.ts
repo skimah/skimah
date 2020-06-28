@@ -1,6 +1,6 @@
-import { schemaComposer, ObjectTypeComposer } from "graphql-compose";
 import { graphql } from "graphql";
-import blueprint from "../src/blueprint";
+import { ObjectTypeComposer, schemaComposer } from "graphql-compose";
+import generate from "../src/generate";
 import { Datasource } from "../src/types";
 
 const typeDefs = `
@@ -31,7 +31,7 @@ describe("Schema Orderby", () => {
     const ts = schemaComposer.addTypeDefs(typeDefs);
     const tc = <ObjectTypeComposer>ts.get("User");
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: { default: defaultSource }
     });

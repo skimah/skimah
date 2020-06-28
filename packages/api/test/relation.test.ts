@@ -1,5 +1,5 @@
-import blueprint from "../src/blueprint";
-import { Datasource } from "../src/types";
+import generate from "../src/generate";
+import { Datasource, SkimahResult } from "../src/types";
 import { graphql } from "graphql";
 
 const typeDefs = `
@@ -59,11 +59,11 @@ const googleSource: Datasource = {
   delete: jest.fn()
 };
 
-let blueprintResult;
+let skimahResult: SkimahResult;
 
 describe("Schema Relations", () => {
   beforeAll(async () => {
-    blueprintResult = await blueprint({
+    skimahResult = await generate({
       typeDefs,
       sources: {
         default: defaultSource,
@@ -76,7 +76,7 @@ describe("Schema Relations", () => {
   test("One-to-many field relations", () => {
     // videos field has a filter argument
     // emails which is a scalar has no filter
-    expect(blueprintResult.schemaComposer.getOTC("User").toSDL())
+    expect(skimahResult.schemaComposer.getOTC("User").toSDL())
       .toMatchInlineSnapshot(`
       "type User {
         userid: ID
@@ -100,7 +100,7 @@ describe("Schema Relations", () => {
     `);
 
     // the publisher field, a non collection has no filter field
-    expect(blueprintResult.schemaComposer.getOTC("Video").toSDL())
+    expect(skimahResult.schemaComposer.getOTC("Video").toSDL())
       .toMatchInlineSnapshot(`
       "type Video {
         videoID: ID
@@ -128,7 +128,7 @@ describe("Schema Relations", () => {
   test("One-to-one field relations", () => {
     // videos field has a filter argument
     // emails which is a scalar has no filter
-    expect(blueprintResult.schemaComposer.getOTC("Video").toSDL())
+    expect(skimahResult.schemaComposer.getOTC("Video").toSDL())
       .toMatchInlineSnapshot(`
       "type Video {
         videoID: ID
@@ -153,7 +153,7 @@ describe("Schema Relations", () => {
     `);
 
     // the publisher field, a non collection has no filter field
-    expect(blueprintResult.schemaComposer.getOTC("Video").toSDL())
+    expect(skimahResult.schemaComposer.getOTC("Video").toSDL())
       .toMatchInlineSnapshot(`
       "type Video {
         videoID: ID
@@ -192,7 +192,7 @@ describe("Schema Relations", () => {
       update: jest.fn(),
       delete: jest.fn()
     };
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         default: videoSource,
@@ -239,7 +239,7 @@ describe("Schema Relations", () => {
       delete: jest.fn()
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         default: defaultSource,
@@ -284,7 +284,7 @@ describe("Schema Relations", () => {
       update: jest.fn(),
       delete: jest.fn()
     };
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         default: defaultSource,

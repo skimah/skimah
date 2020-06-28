@@ -1,4 +1,4 @@
-import blueprint from "../../src/blueprint";
+import generate from "../../src/generate";
 import { Datasource } from "../../src/types";
 import { graphql } from "graphql";
 
@@ -26,7 +26,7 @@ describe("Schema Delete Resolver", () => {
       delete: jest.fn(() => Promise.resolve({ affected: ["1", "2", "3"] }))
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: { default: source }
     });
@@ -90,7 +90,7 @@ describe("Schema Delete Resolver", () => {
       })
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: { default: source }
     });

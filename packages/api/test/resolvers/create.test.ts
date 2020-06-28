@@ -1,4 +1,4 @@
-import blueprint from "../../src/blueprint";
+import generate from "../../src/generate";
 import { Datasource } from "../../src/types";
 import { graphql } from "graphql";
 
@@ -26,7 +26,7 @@ describe("Schema Create Resolvers", () => {
       delete: jest.fn()
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: { default: source }
     });

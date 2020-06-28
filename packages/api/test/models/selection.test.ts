@@ -1,5 +1,5 @@
 import { graphql } from "graphql";
-import blueprint from "../../src/blueprint";
+import generate from "../../src/generate";
 import { QueryModel, Datasource } from "../../src/types";
 
 const typeDefs = `
@@ -49,7 +49,7 @@ const noopSource = () => ({
 describe("Schema Selection", () => {
   test("Projection and identities", async () => {
     let selection: QueryModel;
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         mongo: noopSource(),
@@ -117,7 +117,7 @@ describe("Schema Selection", () => {
 
   test("Filter criteria", async () => {
     let selection: QueryModel;
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         mongo: noopSource(),
@@ -170,7 +170,7 @@ describe("Schema Selection", () => {
 
   test("OrderBy", async () => {
     let selection: QueryModel;
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         mongo: noopSource(),
@@ -212,7 +212,7 @@ describe("Schema Selection", () => {
 
   test("Combined filters", async () => {
     let selection: QueryModel;
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         mongo: noopSource(),
@@ -288,7 +288,7 @@ describe("Schema Selection", () => {
 
   test("Simple nested filters", async () => {
     let selection: QueryModel;
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         mongo: noopSource(),
@@ -446,7 +446,7 @@ describe("Schema Selection", () => {
       delete: jest.fn()
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         default: defaultSource,
@@ -514,7 +514,7 @@ describe("Schema Selection", () => {
       delete: jest.fn()
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         default: defaultSource,
@@ -608,7 +608,7 @@ describe("Schema Selection", () => {
       delete: jest.fn()
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         default: defaultSource,
@@ -640,7 +640,7 @@ describe("Schema Selection", () => {
 
   test("Query args", async () => {
     let selection: QueryModel;
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         mongo: noopSource(),

@@ -1,5 +1,5 @@
 import { Datasource } from "../src/types";
-import blueprint from "../src/blueprint";
+import generate from "../src/generate";
 
 describe("Schema Datasource", () => {
   const typeDefs = `
@@ -33,7 +33,7 @@ describe("Schema Datasource", () => {
   const none = Object.assign({}, noop);
 
   test("initialize sources", async () => {
-    await blueprint({
+    await generate({
       typeDefs,
       sources: {
         users,

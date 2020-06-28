@@ -1,5 +1,5 @@
-import blueprint from "../src/blueprint";
 import { Datasource } from "../src/types";
+import generate from "../src/generate";
 
 const typeDefs = `
     type User {
@@ -40,10 +40,10 @@ const defaultSource: Datasource = {
 };
 
 describe("Schema Mutation Input", () => {
-  let blueprintResult;
+  let skimahResult;
 
   beforeEach(async () => {
-    blueprintResult = await blueprint({
+    skimahResult = await generate({
       typeDefs,
       sources: {
         default: defaultSource
@@ -52,7 +52,7 @@ describe("Schema Mutation Input", () => {
   });
 
   test("basic", () => {
-    expect(blueprintResult.schemaComposer.getITC("UserInput").toSDL())
+    expect(skimahResult.schemaComposer.getITC("UserInput").toSDL())
       .toMatchInlineSnapshot(`
       "input UserInput {
         userid: Int
@@ -64,7 +64,7 @@ describe("Schema Mutation Input", () => {
       }"
     `);
 
-    expect(blueprintResult.schemaComposer.getITC("ProfileInput").toSDL())
+    expect(skimahResult.schemaComposer.getITC("ProfileInput").toSDL())
       .toMatchInlineSnapshot(`
 "input ProfileInput {
   id: ID
@@ -75,7 +75,7 @@ describe("Schema Mutation Input", () => {
   });
 
   test("simple", () => {
-    expect(blueprintResult.schemaComposer.getITC("ProfileInput").toSDL())
+    expect(skimahResult.schemaComposer.getITC("ProfileInput").toSDL())
       .toMatchInlineSnapshot(`
 "input ProfileInput {
   id: ID

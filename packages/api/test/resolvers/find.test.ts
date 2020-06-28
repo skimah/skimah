@@ -1,4 +1,4 @@
-import blueprint from "../../src/blueprint";
+import generate from "../../src/generate";
 import { Datasource } from "../../src/types";
 import { graphql } from "graphql";
 
@@ -39,7 +39,7 @@ describe("Schema Find Resolver", () => {
   let schemaResult;
 
   beforeAll(async () => {
-    schemaResult = await blueprint({
+    schemaResult = await generate({
       typeDefs,
       sources: {
         users,

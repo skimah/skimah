@@ -1,5 +1,5 @@
 import { graphql } from "graphql";
-import blueprint from "../../src/blueprint";
+import generate from "../../src/generate";
 import { Datasource } from "../../src/types";
 
 const typeDefs = `
@@ -25,7 +25,7 @@ describe("Schema Creation", () => {
       create: jest.fn(() => Promise.resolve({ affected: ["1", "2", "3"] }))
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: { default: defaultSource }
     });
@@ -129,7 +129,7 @@ describe("Schema Creation", () => {
       create: jest.fn(() => Promise.resolve({ affected: ["1", "2", "3"] }))
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: { default: defaultSource }
     });
@@ -171,7 +171,7 @@ describe("Schema Creation", () => {
       )
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         default: defaultSource
@@ -230,7 +230,7 @@ describe("Schema Creation", () => {
       )
     };
 
-    const { schema } = await blueprint({
+    const { schema } = await generate({
       typeDefs,
       sources: {
         default: defaultSource
