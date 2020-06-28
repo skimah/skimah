@@ -14,8 +14,8 @@
     "prepublish": "yarn build",
     "test": "jest --runInBand --detectOpenHandles --forceExit --no-cache",
     "test:api": "jest packages/api",
-    "build": "echo 'coming soon'",
-    "build:api": "yarn build:api",
+    "build": "yarn build:api",
+    "build:api": "tsc -p packages/api",
     "pretty": "prettier --write packages/**/*.{ts,js,yaml} site/**/*.{ts, tsx}",
     "lint": "eslint packages/**/src/**/*.ts"
   },
