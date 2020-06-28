@@ -38,3 +38,8 @@ jobs:
         run: |
           yarn test:ds-json
           yarn build:ds-json
+
+      - name: CSV
+        run: |
+          yarn test:ds-csv
+          yarn build:ds-csv
