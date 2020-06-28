@@ -1,0 +1,23 @@
+{
+  "version": "independent",
+  "npmClient": "npm",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "ignoreChanges": ["**/*.md", "**/*.json", "**/test/**", "examples/**/.*"],
+      "conventionalCommits": true,
+      "allowBranch": "master",
+      "registry": "https://npm.pkg.github.com",
+      "message": "chore(release): published"
+    },
+    "bootstrap": {
+      "npmClientArgs": ["--no-package-lock"]
+    }
+  },
+  "npmClientArgs": ["--no-optional"],
+  "packages": ["packages/*"],
+  "publishConfig": {
+    "directory": "lib",
+    "access": "public"
+  }
+}
