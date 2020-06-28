@@ -1,6 +1,6 @@
-import { blueprint, BlueprintConfig } from "@sayjava/blueprint-schema";
+import { generate, SkimahConfig } from "@skimah/api";
 import { graphql } from "graphql";
-import SampleSource from "../src/sample";
+import SampleSource from "../src/faker";
 
 const typeDefs = `
   type Manager @datasource(name: "sample") {
@@ -27,12 +27,12 @@ describe("Datasource SampleData", () => {
   beforeAll(async () => {
     const sample = new SampleSource({ recordMaximum: 10 });
 
-    const config: BlueprintConfig = {
+    const config: SkimahConfig = {
       typeDefs,
       sources: { sample }
     };
 
-    const blueprintResult = await blueprint(config);
+    const blueprintResult = await generate(config);
     schema = blueprintResult.schema;
   });
 
@@ -67,7 +67,7 @@ describe("Datasource SampleData", () => {
             findManagers(limit: 2) {
               id
               firstName
-              events {
+              events  {
                 date
               }
             }
@@ -229,12 +229,12 @@ describe("Datasource SampleData", () => {
       `;
 
       const sample = new SampleSource({ recordMaximum: 10 });
-      const config: BlueprintConfig = {
+      const config: SkimahConfig = {
         typeDefs: badTypeDef,
         sources: { sample }
       };
 
-      return expect(blueprint(config)).rejects.toContain(
+      return expect(generate(config)).rejects.toContain(
         `The attribute named \"bad_directive\" does not match the format`
       );
     });

@@ -58,7 +58,7 @@ const generateRecords = (config: Config, model: Model) => {
     Object.values(model.attributes).forEach((attr: Attribute) => {
       if (attr.unique) {
         // auto increment ID/@unique values
-        record[attr.sourceName] = (index + 1).toString();
+        record[attr.sourceName] = index + 1;
       } else {
         record[attr.sourceName] = fakerGenerator(attr.sourceName);
       }
@@ -116,7 +116,7 @@ export default class SampleRecords implements Datasource {
     for (const relation of Object.values(selection.projectedRelations)) {
       const originalCriteria = relation.model.criteria.and;
 
-      parents.forEach(async parent => {
+      for (const parent of parents) {
         const newCriteria = {
           [relation.condition.child.sourceName]: {
             eq: parent[relation.condition.parent.name]
@@ -133,7 +133,7 @@ export default class SampleRecords implements Datasource {
           const [child] = await this.select(relation.model);
           parent[relation.name] = child;
         }
-      });
+      }
     }
 
     return parents;
