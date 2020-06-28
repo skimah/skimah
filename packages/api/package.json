@@ -1,0 +1,37 @@
+{
+  "name": "@skimah/api",
+  "description": "Skimah's GraphQL API generation library",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "keywords": [
+    "schema",
+    "api",
+    "graphql"
+  ],
+  "author": "Raymond Ottun",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-compose": "^7.14.0",
+    "graphql-parse-resolve-info": "^4.5.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skimah/skimah.git"
+  },
+  "peerDependencies": {
+    "@types/graphql": "^14.5.0",
+    "graphql": "15.1.0"
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "graphql": "15.1.0"
+  }
+}

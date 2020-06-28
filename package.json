@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "test": "jest --runInBand --detectOpenHandles --forceExit --no-cache",
+    "test:api": "jest packages/api",
     "build": "echo 'coming soon'",
     "pretty": "echo 'coming soon'",
     "lint": "echo 'coming soon'"
