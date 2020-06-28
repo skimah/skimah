@@ -17,7 +17,7 @@ export type GraphqlResolver = (
 ) => Promise<any>;
 
 /**
- * A blueprint model field. This is the graphql field defined in the type definition
+ * A skimah model field. This is the graphql field defined in the type definition
  */
 export interface Field {
   /**
@@ -303,7 +303,7 @@ export interface MutationAttribute extends Attribute {
 }
 
 /**
- * An extension of a blueprint model used as arguments to datasource
+ * An extension of a skimah model used as arguments to datasource
  * operations that mutates underlying datasources.
  *
  */
@@ -396,7 +396,7 @@ export interface Datasource {
 
 export interface SkimahConfig {
   /**
-   * The graphql type definitions to generate the blueprint API from. Each defined type
+   * The graphql type definitions to generate the skimah API from. Each defined type
    * in the schema will have an API generated for them.
    */
   typeDefs: string;
@@ -437,7 +437,7 @@ export interface SkimahResult {
   resolvers: { [key: string]: any };
 
   /**
-   * These are the blueprint generated models that can be useful for introspection and debugging
+   * These are the skimah generated models that can be useful for introspection and debugging
    */
   models: { [key: string]: any };
 
@@ -452,7 +452,7 @@ export interface SkimahResult {
 /**
  * Generate an API from schema
  */
-export interface blueprint {
+export interface skimah {
   /**
    * @param config Skimah configuration to modify the behavior
    * of the generated API
