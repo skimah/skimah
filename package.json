@@ -14,7 +14,7 @@
     "prepublish": "yarn build",
     "test": "jest --runInBand --detectOpenHandles --forceExit --no-cache",
     "test:api": "jest packages/api",
-    "test:json": "jest packages/ds-json",
+    "test:ds-json": "jest packages/ds-json",
     "build:api": "tsc -p packages/api",
     "build:ds-json": "tsc -p packages/ds-json",
     "build": "yarn build:api && yarn build:ds-json",
