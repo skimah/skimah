@@ -331,7 +331,7 @@ export interface MutationResponse<T> {
 }
 
 /**
- * A Blueprint Datasource is an object with a CRUD (create, read, update and delete) interface
+ * A Skimah Datasource is an object with a CRUD (create, read, update and delete) interface
  * that will be called by resolvers when an associated model is queried or mutated.
  *
  * A Datasource is a generic interface to interact with an underlying datasource which could be
@@ -394,7 +394,7 @@ export interface Datasource {
   delete: (criteria: Criteria, model: Model) => Promise<MutationResponse<any>>;
 }
 
-export interface BlueprintConfig {
+export interface SkimahConfig {
   /**
    * The graphql type definitions to generate the blueprint API from. Each defined type
    * in the schema will have an API generated for them.
@@ -421,9 +421,9 @@ export interface BlueprintConfig {
 }
 
 /**
- *  The result of Blueprinting a schema
+ *  The result of Skimahing a schema
  */
-export interface BlueprintResult {
+export interface SkimahResult {
   /**
    * An executable schema ready to used with a choice of graphql server.
    * The graphql schema has all the necessary resolvers attached and will
@@ -454,8 +454,8 @@ export interface BlueprintResult {
  */
 export interface blueprint {
   /**
-   * @param config Blueprint configuration to modify the behavior
+   * @param config Skimah configuration to modify the behavior
    * of the generated API
    */
-  (config: BlueprintConfig): Promise<BlueprintResult>;
+  (config: SkimahConfig): Promise<SkimahResult>;
 }

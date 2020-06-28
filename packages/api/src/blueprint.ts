@@ -6,7 +6,7 @@ import createOrderBy from "./orderby";
 import createRelations from "./relations";
 import createResolvers from "./resolvers";
 import createMutationResponse from "./response";
-import { Model, BlueprintConfig, BlueprintResult } from "./types";
+import { Model, SkimahConfig, SkimahResult } from "./types";
 import { nullSource } from "./datasource";
 
 /**
@@ -51,7 +51,7 @@ const DEFAULT_TYPES = [
   "Int"
 ];
 
-export default async (config: BlueprintConfig): Promise<BlueprintResult> => {
+export default async (config: SkimahConfig): Promise<SkimahResult> => {
   const schemaComposer = new SchemaComposer<any>();
   const datasources = Object.assign({ default: nullSource }, config.sources);
 
@@ -132,7 +132,7 @@ export default async (config: BlueprintConfig): Promise<BlueprintResult> => {
         await datasource.initialize(modelsAttachedToSource);
       } catch (error) {
         return Promise.reject(
-          `Blueprint Datasource Error: ${name}, ${error.toString()}`
+          `Skimah Datasource Error: ${name}, ${error.toString()}`
         );
       }
     }
