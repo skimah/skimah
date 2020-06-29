@@ -1,6 +1,6 @@
 {
   "name": "@skimah/ds-faker",
-  "version": "0.1.0-alpha.9",
+  "version": "0.1.0-alpha.10",
   "description": "FakerJS Datasource for skimah",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -32,7 +32,7 @@
     "graphql": "15.1.0"
   },
   "dependencies": {
-    "@skimah/ds-json": "^0.1.0-alpha.8",
+    "@skimah/ds-json": "^0.1.0-alpha.9",
     "faker": "^4.1.0"
   },
   "publishConfig": {
