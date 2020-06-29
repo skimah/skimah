@@ -21,12 +21,16 @@
   </strong>
 </p>
 
+<p align="center">
+<img align="center" style="width:320px" src="media/architecture.png"/>
+</p>
+
 ## Features
 
+- Auto-generated CRUD and Field-filtering API from the schema definition (also supports readonly types)
 - Expose only the records you want to your clients via your schema definition
-- Auto-generated CRUD and Field-filtering API from the schema definition (also supports readonly types).
 - Datasource agnostic using the Skimah Datasource interface. Datasources like `sql`, `csv`, `faker` e.t.c. can be easily crafted
-- Schema based relationships across types from different sources.
+- Schema based relationships across types from different datasources
 - Legacy friendly, field and type names can be remapped from legacy datasources to GraphQL field names for a cleaner API.
 - Bring your own GraphQL Server.
 
@@ -110,7 +114,7 @@ Skimah ships with a collection of directives that makes it easy to craft an API 
 
 ## [Datasources](docs/schema.md)
 
-Datasources are the backbone of Skimah and they are quite simple to implement. They are basically a CRUD interface to be implemented and are called by the generated type resolvers. [Datasource documentation](docs/schema.md)
+Datasources are the backbone of Skimah and they are quite simple to implement. They are simply a reusable CRUD interface to be implemented and are called by by the generated type resolvers for the corresponding GraphQL operations. [Datasource documentation](docs/schema.md)
 
 A simple empty datasource implementation is as follows
 
@@ -169,9 +173,19 @@ Experience the power of a schema-first approach to GraphQL API development with 
 - Support for Graphql Unions
 - Nested mutation across datasources
 
+## Bug tracker
+
+If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/skimah/skimah/issues
+
 ## Links
 
 - 🐦 Twitter: [@sayjava](https://twitter.com/sayjava)
 - 👉 [Play with Skimah online](https://studio.skimah.dev)
 
 > ⚠️ Skimah is not production ready yet but it is fabulous for quickly prototyping APIs for projects.
+
+## License
+
+Released under [MIT License](https://opensource.org/licenses/mit-license.php).
+
+**Skimah** is authored and maintained by [@sayjava](http://github.com/sayjava).
