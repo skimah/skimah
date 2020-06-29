@@ -1,9 +1,3 @@
----
-id: api
-title: CRUD API
-sidebar_label: CRUD
----
-
 # Skimah CRUD API
 
 > ⚠️ Documentation is still in progress

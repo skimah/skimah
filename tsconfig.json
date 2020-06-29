@@ -1,3 +1,7 @@
 {
-  "extends": "./tsconfig.base"
+  "extends": "./tsconfig.base",
+  "typedocOptions": {
+    "mode": "file",
+    "out": "api-docs"
+  }
 }

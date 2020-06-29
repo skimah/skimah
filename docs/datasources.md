@@ -1,9 +1,3 @@
----
-id: datasources
-title: Datasource
-sidebar_label: Datasource
----
-
 # Skimah Datasources
 
 Under the hood Skimah generates CRUD resolvers for each defined type in a schema definition. Each resolver maps directly to a GraphQL operation which then maps those GraphQL operation and their arguments to inputs to the datasource.

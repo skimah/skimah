@@ -1,14 +1,4 @@
----
-title: Schema Definition
-description: Blueprint GraphQL schema definition
-keywords:
-  - graphql api
-  - schema definition
-  - type definition
-  - crud
----
-
-## Type definition
+# Type definition
 
 As a schema-first approach to API development, the schema becomes the source of truth of what to expect from the API.
 
