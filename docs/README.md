@@ -55,10 +55,14 @@ You can now run queries like the on below against the executable schema. Skimah 
 }
 ```
 
-<p align="center">
-    <h1>Skimah Studio</h1>
-</p>
+## [Skimah Studio](https://studio.skimah.dev)
 
-Experience the power of a schema-first approach to GraphQL API development with an online IDE for quickly generating GraphQL APIs and endpoints. [Give it a try](https://studio.skimah.dev)
+Experience the power of a schema-first approach to GraphQL API development with an online IDE for quickly generating GraphQL APIs and endpoints. 
 
 ![Skimah Studio Screenshot](_media/screenshot.png)
+
+- Generate Skimah API on the fly
+- Use your own datasources to try out your API
+- Get a unique API endpoint to use in your application
+
+[Give it a try](https://studio.skimah.dev)

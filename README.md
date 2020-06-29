@@ -1,5 +1,5 @@
 <p align="center">
-<img align="center" style="width:320px" src="docs/_media/logo.svg"/></p>
+<img align="center" style="width:320px" src="docs/_media/logo.png"/></p>
 <br/>
 <p align="center">
 <a href="#">
@@ -161,8 +161,13 @@ Skimah's GraphQL API is heavily influenced by [Hasura's](https://hasura.io) and 
 
 ## [Skimah Studio](https://studio.skimah.dev)
 
-Experience the power of a schema-first approach to GraphQL API development with an online IDE for quickly generating GraphQL APIs and endpoints. [Give it a try](https://studio.skimah.dev)
+Experience the power of a schema-first approach to GraphQL API development with an online IDE for quickly generating GraphQL APIs and endpoints. 
 
+- Generate Skimah API on the fly
+- Use your own datasources to try out your API
+- Get a unique API endpoint to use in your application
+
+[Give it a try](https://studio.skimah.dev)
 ![Skimah Studio Screenshot](docs/_media/screenshot.png)
 
 ## Coming Soon
