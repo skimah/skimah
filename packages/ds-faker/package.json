@@ -35,5 +35,8 @@
     "@skimah/ds-json": "^0.1.0-alpha.8",
     "faker": "^4.1.0"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "gitHead": "7d10ac44efe76cd8c90a82484401546878c8208b"
 }
