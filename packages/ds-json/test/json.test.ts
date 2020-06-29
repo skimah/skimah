@@ -44,8 +44,8 @@ describe("JSON Datasource", () => {
       sources
     };
 
-    const blueprintResult = await generate(config);
-    schema = blueprintResult.schema;
+    const skimahResult = await generate(config);
+    schema = skimahResult.schema;
   });
 
   describe("Selection", () => {

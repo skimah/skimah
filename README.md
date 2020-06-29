@@ -1,12 +1,9 @@
 <p align="center">
-<img align="center" style="width:320px" src="site/static/img/logo.svg"/></p>
+<img align="center" style="width:320px" src="media/logo.svg"/></p>
 <br/>
 <p align="center">
 <a href="#">
-<img src="https://github.com/sayjava/skimah/workflows/CI/badge.svg" alt="CI Status">
-</a>
-<a href="#">
-<img src="https://github.com/sayjava/skimah/workflows/github%20pages/badge.svg" alt="CI Status">
+<img src="https://github.com/skimah/skimah/workflows/Test/badge.svg" alt="CI Status">
 </a>
 </p>
 
@@ -14,11 +11,11 @@
 
 <p align="center">
   <strong>
-    <a href="site/docs/schema.md">Schema<a/>
+    <a href="docs/schema.md">Schema<a/>
     &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-    <a href="site/docs/datasources.md">Datasources<a/>
+    <a href="docs/datasources.md">Datasources<a/>
     &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-    <a href="site/docs/api.md">GraphQL API<a/>
+    <a href="docs/api.md">GraphQL API<a/>
     &nbsp;&nbsp;&bull;&nbsp;&nbsp;
     <a href="https://studio.skimah.dev">Skimah Studio<a/>
   </strong>
@@ -98,22 +95,22 @@ You can now run queries like the on below against the executable schema. Skimah 
 }
 ```
 
-## [Skimah Directives](site/docs/schema.md)
+## [Skimah Directives](docs/schema.md)
 
 Skimah ships with a collection of directives that makes it easy to craft an API from a schema definition.
 
-| Directive                          | Description                                                                 | Location        |
-| ---------------------------------- | --------------------------------------------------------------------------- | --------------- |
-| [@readonly](site/docs/schema.md)   | Only generate read APIs for the type                                        | Object          |
-| [@datasource](site/docs/schema.md) | Associates the type to a defined datasource. Datasources are reusable       | Object          |
-| [@named](site/docs/schema.md)      | Rename a `type`, `field` or `relationship` from datasource to GraphQL names | Field \| Object |
-| [@relation](site/docs/schema.md)   | Creates a relationship between types                                        | Field           |
+| Directive                     | Description                                                                 | Location        |
+| ----------------------------- | --------------------------------------------------------------------------- | --------------- |
+| [@readonly](docs/schema.md)   | Only generate read APIs for the type                                        | Object          |
+| [@datasource](docs/schema.md) | Associates the type to a defined datasource. Datasources are reusable       | Object          |
+| [@named](docs/schema.md)      | Rename a `type`, `field` or `relationship` from datasource to GraphQL names | Field \| Object |
+| [@relation](docs/schema.md)   | Creates a relationship between types                                        | Field           |
 
-[Skimah directives](site/docs/schema.md)
+[Skimah directives](docs/schema.md)
 
-## [Datasources](site/docs/schema.md)
+## [Datasources](docs/schema.md)
 
-Datasources are the backbone of Skimah and they are quite simple to implement. They are basically a CRUD interface to be implemented and are called by the generated type resolvers. [Datasource documentation](site/docs/schema.md)
+Datasources are the backbone of Skimah and they are quite simple to implement. They are basically a CRUD interface to be implemented and are called by the generated type resolvers. [Datasource documentation](docs/schema.md)
 
 A simple empty datasource implementation is as follows
 
@@ -147,22 +144,22 @@ const myCustomSource = {
 
 Other datasources like Postgres, Mysql, SQLite, Dynamodb e.t.c are coming soon.
 
-## [GraphQL API](site/docs/api.md)
+## [GraphQL API](docs/api.md)
 
 Skimah's GraphQL API is heavily influenced by [Hasura's](https://hasura.io) and [MongoDB API](https://docs.mongodb.com/manual/tutorial/query-documents/)
 
-| Datasource                        | Description                                                                          |
-| --------------------------------- | ------------------------------------------------------------------------------------ |
-| [find](site/docs/api.md#find)     | A find query is generated for each type. e.g `findUser` for type called `User`       |
-| [create](site/docs/api.md#create) | Create operation is generated for each type e.g `createUsers` for type called `User` |
-| [update](site/docs/api.md#update) | Update operation is generated for each type e.g `updateUsers` for type called `User` |
-| [delete](site/docs/api.md#delete) | Delete operation is generated for each type e.g `deleteUsers` for type called `User` |
+| Datasource                   | Description                                                                          |
+| ---------------------------- | ------------------------------------------------------------------------------------ |
+| [find](docs/api.md#find)     | A find query is generated for each type. e.g `findUser` for type called `User`       |
+| [create](docs/api.md#create) | Create operation is generated for each type e.g `createUsers` for type called `User` |
+| [update](docs/api.md#update) | Update operation is generated for each type e.g `updateUsers` for type called `User` |
+| [delete](docs/api.md#delete) | Delete operation is generated for each type e.g `deleteUsers` for type called `User` |
 
 ## [Skimah Studio](https://studio.skimah.dev)
 
 Experience the power of a schema-first approach to GraphQL API development with an online IDE for quickly generating GraphQL APIs and endpoints. [Give it a try](https://studio.skimah.dev)
 
-![Skimah Studio Screenshot](site/static/img/screenshot.png)
+![Skimah Studio Screenshot](media/screenshot.png)
 
 ## Coming Soon
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="196px" height="67px" viewBox="0 0 196 67" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Page 1</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="hexa" transform="translate(0.000000, 0.177500)">
+            <polygon id="Path" points="10.9976338 2.8225 27.0023662 2.8225 35 16.8225 27.0023662 30.8225 10.9976338 30.8225 3 16.8225"></polygon>
+            <polygon id="Path" points="27.0023662 60.8225 10.9976338 60.8225 3 46.8241053 10.9976338 32.8225 27.0023662 32.8225 28.0024648 34.5690887 35 46.8241053"></polygon>
+            <polygon id="Path" points="36.9976338 45.8225 35.9975352 44.0729013 29 31.8225 36.9976338 17.8225 53.0023662 17.8225 61 31.8225 53.0023662 45.8225"></polygon>
+            <path d="M63,31.8225 L53.7201,15.7632135 L36.4581,15.7632135 L27.82395,0.8225 L9.2799,0.8225 L0,16.8817865 L8.631,31.8225 L0,46.7632135 L9.2799,62.8225 L27.82395,62.8225 L36.4581,47.8817865 L53.7201,47.8817865 L63,31.8225 Z M10.56195,3.06281483 L26.5419,3.06281483 L34.52715,16.8817865 L26.5419,30.7007582 L10.56195,30.7007582 L2.5767,16.8817865 L10.56195,3.06281483 Z M26.5419,60.5821852 L10.56195,60.5821852 L2.5767,46.7632135 L10.56195,32.9442418 L26.5419,32.9442418 L27.54045,34.6743859 L34.52715,46.769551 L26.5419,60.5821852 Z M36.4581,45.6414717 L35.45955,43.9144963 L28.47285,31.8225 L36.4581,18.0035283 L52.43805,18.0035283 L60.4233,31.8225 L52.43805,45.6414717 L36.4581,45.6414717 Z" id="Shape" fill="#262933" fill-rule="nonzero"></path>
+        </g>
+        <text id="Skimah" fill="#0F202D" fill-rule="nonzero" font-family="Teko-Regular, Teko" font-size="56" font-weight="normal">
+            <tspan x="76.268" y="45">Skimah</tspan>
+        </text>
+        <text id="Schema-First-API" font-family="Teko-Regular, Teko" font-size="18" font-weight="normal" fill="#333333">
+            <tspan x="81" y="67">Schema First  API</tspan>
+        </text>
+    </g>
+</svg>
