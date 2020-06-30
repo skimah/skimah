@@ -9,8 +9,6 @@
 - Relationships across datasources
 - Use your own GraphQL Server.
 
-<img src="_media/screen.gif">
-
 [GitHub](https://github.com/skimha/skimah/)
 [Get Started](#quick-start)
 

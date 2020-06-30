@@ -4,7 +4,7 @@ Under the hood Skimah generates CRUD resolvers for each defined type in a schema
 
 ## Datasource Interface
 
-A Datasource is an object that implements the basic CRUD operations defined in the Datasource interface as described below. See the [API Documentation](/docs/api) for the CRUD operations.
+A Datasource is an object that implements the basic CRUD operations defined in the Datasource interface as described below. See the [API Documentation](https://github.com/skimah/skimah/blob/ac07968a812cdf0e70e0ee3bf8deab3bd4e97db8/packages/api/src/types.ts#L343) for the CRUD operations.
 
 ```javascript
 interface Datasource {
@@ -180,6 +180,8 @@ const { datasource } = new CSVSource({
 });
 ```
 
+see implementation [here](https://github.com/skimah/skimah/tree/master/packages/ds-csv) 
+
 ### JSON
 
 This datasource is very similar to the CSV datasource with the difference that its data comes from a JSON file or an array of json objects
@@ -196,6 +198,7 @@ or for inline records
 ```javascript
 const jsonSource = new JSONSource({ records: [{}, {}, {}] });
 ```
+see implementation [here](https://github.com/skimah/skimah/tree/master/packages/ds-json) 
 
 ### Faker
 
@@ -225,6 +228,8 @@ const sampleSource = new FakerSource({
   max: 10 // the number of records to generate
 });
 ```
+
+see implementation [here](https://github.com/skimah/skimah/tree/master/packages/ds-faker)
 
 ### SQL
 

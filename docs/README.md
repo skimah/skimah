@@ -2,29 +2,42 @@
 
 ```javascript
 import { generate } from "@skimah/api";
-import csv from "@skimah/ds-csv";
-import json from "@skimah/ds-json";
+import CsvSource from "@skimah/ds-csv";
+import JsonSource from "@skimah/ds-json";
+import { graphql } from "graphql";
 
-const users = csv({
-  records: `
-    id, user_name
-    1,  james
-    `
+const users = new CsvSource({
+  records: `id,user_name
+  1,james
+    `,
 });
 
-const tasks = json({
+const tasks = new JsonSource({
   records: [
-    { id: 1, title: "compile", done: false, owner: 1 },
-    { id: 2, title: "deploy", done: true, owner: 1 }
-  ]
+    {
+      id: 1,
+      title: "compile",
+      done: false,
+      owner: 1,
+    },
+    {
+      id: 2,
+      title: "deploy",
+      done: true,
+      owner: 1,
+    },
+  ],
 });
 
-const sources = { users, tasks };
+const sources = {
+  users,
+  tasks,
+};
 
 const typeDefs = `
     type User @datasource(name: "users") {
         id: ID
-        username: String @named(as: "user_name")
+        userName: String @named(as: "user_name")
         tasks: [Task] @relation
     }
 
@@ -36,23 +49,32 @@ const typeDefs = `
     }
 `;
 
-// Generate an executable schema
-const { schema } = generate({ typeDefs, sources });
-
-// Use your own server here to execute queries against the schema
-```
-
-You can now run queries like the on below against the executable schema. Skimah will transparently fetch the data across the `json` and `csv` datasources
-
-```graphql
-{
-  findUsers(limit: 2) {
-    username
+const query = `{
+  findUsers(limit: 1) {
+    userName
     tasks(where: { done: { eq: true } }) {
       title
     }
   }
-}
+}`;
+
+(async () => {
+
+  //  Generate executable schema
+  const { schema } = await generate({
+    typeDefs,
+    sources,
+  });
+
+  // use whatever graphql server that suits you
+  const result = await graphql({
+    schema,
+    source: query,
+  });
+
+  console.log(result.data.findUsers);
+})();
+
 ```
 
 ## [Skimah Studio](https://studio.skimah.dev)
