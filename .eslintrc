@@ -2,7 +2,6 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "prettier",
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
@@ -27,9 +26,6 @@
         "extensions": [".ts", ".tsx"]
       }
     },
-    "react": {
-      "version": "detect"
-    }
   },
   "root": true,
   "parserOptions": {
