@@ -1,0 +1,22 @@
+{
+  "name": "skimah-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@skimah/api": "^0.1.0",
+    "@skimah/ds-csv": "^0.1.0",
+    "@skimah/ds-json": "^0.1.0",
+    "graphql": "^15.2.0"
+  },
+  "devDependencies": {
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  }
+}
