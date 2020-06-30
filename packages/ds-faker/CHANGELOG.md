@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/skimah/skimah/compare/@skimah/ds-faker@0.1.0-alpha.10...@skimah/ds-faker@0.1.0) (2020-06-30)
+
+**Note:** Version bump only for package @skimah/ds-faker
+
+
+
+
+
 # [0.1.0-alpha.10](https://github.com/skimah/skimah/compare/@skimah/ds-faker@0.1.0-alpha.9...@skimah/ds-faker@0.1.0-alpha.10) (2020-06-29)
 
 
