@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/skimah/skimah/compare/@skimah/api@0.1.0...@skimah/api@0.2.0) (2020-07-04)
+
+
+### Bug Fixes
+
+* **api:** fixed non object type generation ([b6e99d9](https://github.com/skimah/skimah/commit/b6e99d97e0fd016c02c9223bdac4fd103b56ed37))
+
+
+### Features
+
+* **api:** added support for field alias ([6980303](https://github.com/skimah/skimah/commit/6980303231ed8d3907ede759d38ee83a7feef21f))
+
+
+
+
+
 # [0.1.0](https://github.com/skimah/skimah/compare/@skimah/api@0.1.0-alpha.9...@skimah/api@0.1.0) (2020-06-30)
 
 **Note:** Version bump only for package @skimah/api
