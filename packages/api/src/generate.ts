@@ -67,7 +67,7 @@ export default async (config: SkimahConfig): Promise<SkimahResult> => {
   const modelsBySource: { [key: string]: Model[] } = {};
 
   const typeModels = Array.from(typeStorage.types.values()).filter(t => {
-    const isObject = t.toSDL().includes("type");
+    const isObject = t.getType().astNode.kind === "ObjectTypeDefinition";
     return isObject && !DEFAULT_TYPES.includes(t.getTypeName());
   });
 

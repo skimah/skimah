@@ -8,7 +8,13 @@ const typeDefs = `
         email: String
         age: Int
         height: Float
+        status: Status
         videos: [Video] @relation
+    }
+
+    enum Status {
+      disabled
+      ready
     }
 
     type Video @datasource(name: "videos") {

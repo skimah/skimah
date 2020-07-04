@@ -6,7 +6,7 @@ import { RelationCondition } from "../types";
 
 /**
  * @internal
- * Creates a find{Type}s resolver that can be resued
+ * Creates a find{Type}s resolver that can be reused
  * for fetching a type. The datasource defined in the
  * schema for the type is invoked for sourcing this type
  *

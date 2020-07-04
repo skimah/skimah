@@ -57,7 +57,7 @@ export default (
     const fieldModel = models[fieldTypeName];
 
     if (isRelation && isNonScalar) {
-      const differentDatsources =
+      const differentDatasources =
         parentModel.datasource !== fieldModel.datasource;
 
       const typeResolverName = getPluralName(`find ${fieldTypeName}`);
@@ -74,7 +74,7 @@ export default (
 
       const relationshipType = constructRelationType(
         isCollection,
-        differentDatsources
+        differentDatasources
       );
 
       if (relationshipType.collectionFromDifferentSources) {
