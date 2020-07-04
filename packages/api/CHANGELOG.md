@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/skimah/skimah/compare/@skimah/api@0.2.0...@skimah/api@0.2.1) (2020-07-04)
+
+
+### Bug Fixes
+
+* fixed the type detected bug ([454752e](https://github.com/skimah/skimah/commit/454752e67e5e2c7a8ff8c164272bf1d2604d0096))
+
+
+
+
+
 # [0.2.0](https://github.com/skimah/skimah/compare/@skimah/api@0.1.0...@skimah/api@0.2.0) (2020-07-04)
 
 
