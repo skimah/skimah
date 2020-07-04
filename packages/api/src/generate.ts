@@ -1,4 +1,5 @@
 import { ObjectTypeComposer, SchemaComposer } from "graphql-compose";
+import { nullSource } from "./datasource";
 import createInputFilter from "./filter";
 import createInput from "./inputs";
 import createModel from "./models/base";
@@ -7,7 +8,6 @@ import createRelations from "./relations";
 import createResolvers from "./resolvers";
 import createMutationResponse from "./response";
 import { Model, SkimahConfig, SkimahResult } from "./types";
-import { nullSource } from "./datasource";
 
 /**
  * @internal
@@ -66,9 +66,10 @@ export default async (config: SkimahConfig): Promise<SkimahResult> => {
 
   const modelsBySource: { [key: string]: Model[] } = {};
 
-  const typeModels = Array.from(typeStorage.types.values()).filter(
-    t => !DEFAULT_TYPES.includes(t.getTypeName())
-  );
+  const typeModels = Array.from(typeStorage.types.values()).filter(t => {
+    const isObject = t.toSDL().includes("type");
+    return isObject && !DEFAULT_TYPES.includes(t.getTypeName());
+  });
 
   // extend the types
   for (let tc of typeModels) {

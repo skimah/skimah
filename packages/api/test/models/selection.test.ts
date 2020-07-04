@@ -34,6 +34,17 @@ const typeDefs = `
       video: Video! @relation(field: "videoID") @named(as: "mediaID")
     }
 
+    interface Entity {
+      id: String
+    }
+
+    enum EntityType {
+      Human
+      Mammal 
+    }
+
+    union Result = Comment | Status
+
     type Query {
         hello: String
     }
