@@ -53,7 +53,7 @@ import { graphql } from "graphql";
 const users = new CsvSource({
   records: `id,user_name
   1,james
-    `,
+    `
 });
 
 const tasks = new JsonSource({
@@ -62,20 +62,20 @@ const tasks = new JsonSource({
       id: 1,
       title: "compile",
       done: false,
-      owner: 1,
+      owner: 1
     },
     {
       id: 2,
       title: "deploy",
       done: true,
-      owner: 1,
-    },
-  ],
+      owner: 1
+    }
+  ]
 });
 
 const sources = {
   users,
-  tasks,
+  tasks
 };
 
 const typeDefs = `
@@ -103,22 +103,20 @@ const query = `{
 }`;
 
 (async () => {
-
   //  Generate executable schema
   const { schema } = await generate({
     typeDefs,
-    sources,
+    sources
   });
 
   // use whatever graphql server that suits you
   const result = await graphql({
     schema,
-    source: query,
+    source: query
   });
 
   console.log(result.data.findUsers);
 })();
-
 ```
 
 You can now run queries like the on below against the executable schema. Skimah will transparently fetch the data across the `json` and `csv` datasources
@@ -196,7 +194,7 @@ Skimah's GraphQL API is heavily influenced by [Hasura's](https://hasura.io) and 
 
 ## [Skimah Studio](https://studio.skimah.dev)
 
-Experience the power of a schema-first approach to GraphQL API development with an online IDE for quickly generating GraphQL APIs and endpoints. 
+Experience the power of a schema-first approach to GraphQL API development with an online IDE for quickly generating GraphQL APIs and endpoints.
 
 - Generate Skimah API on the fly
 - Use your own datasources to try out your API
@@ -208,9 +206,6 @@ Experience the power of a schema-first approach to GraphQL API development with 
 ## Coming Soon
 
 - Support for Dataloader-ish caching
-- Support for Graphql interfaces
-- Support for Graphql query field alias
-- Support for Graphql Unions
 - Nested mutation across datasources
 
 ## Bug tracker
@@ -229,7 +224,7 @@ If you have any suggestions, bug reports, or annoyances please report them to ou
 Released under [MIT License](https://opensource.org/licenses/mit-license.php).
 
 ## Thanks
-- [GraphQL Compose](https://github.com/graphql-compose/graphql-compose)
 
+- [GraphQL Compose](https://github.com/graphql-compose/graphql-compose)
 
 **Skimah** is authored and maintained by [@sayjava](http://github.com/sayjava).
