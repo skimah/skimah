@@ -228,4 +228,8 @@ If you have any suggestions, bug reports, or annoyances please report them to ou
 
 Released under [MIT License](https://opensource.org/licenses/mit-license.php).
 
+## Thanks
+- [GraphQL Compose](https://github.com/graphql-compose/graphql-compose)
+
+
 **Skimah** is authored and maintained by [@sayjava](http://github.com/sayjava).

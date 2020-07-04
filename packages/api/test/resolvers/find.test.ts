@@ -166,6 +166,32 @@ describe("Schema Find Resolver", () => {
     `);
   });
 
+  test("confirms alias query fields", async () => {
+    const query = `
+        query {
+            myVideos: findVideos {
+                me:publisher {
+                    myEmail:email
+                }
+            }
+        }
+    `;
+
+    const result = await graphql(schemaResult.schema, query);
+
+    expect(result.errors).toMatchInlineSnapshot(`undefined`);
+
+    const {
+      myVideos: [video]
+    } = result.data;
+
+    expect(video.me).toMatchInlineSnapshot(`
+      Object {
+        "myEmail": "test@example.com",
+      }
+    `);
+  });
+
   test("confirms relation field are passed on to child selection as criteria", async () => {
     const query = `
         query {

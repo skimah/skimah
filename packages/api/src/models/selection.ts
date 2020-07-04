@@ -98,20 +98,27 @@ const createQueryModel = ({
   const [[, fields]] = Object.entries(fieldsByTypeName);
 
   for (const [fieldName, fieldTree] of Object.entries(fields)) {
-    if (baseModel.attributes[fieldName]) {
-      projectedAttributes[fieldName] = baseModel.attributes[fieldName];
+    if (baseModel.attributes[fieldTree.name]) {
+      // account for GraphQL field aliasing
+
+      projectedAttributes[fieldName] = Object.assign(
+        baseModel.attributes[fieldTree.name],
+        { name: fieldName }
+      );
     } else {
-      const theRelation = baseModel.relations[fieldName];
+      const theRelation = baseModel.relations[fieldTree.name];
       const relationModel = models[theRelation.type];
 
       /**
        * For one-to-one relationships, an attribute should be added to
        * the projected attributes for selection and later for comparison
        * in the child relations
+       *
+       * Also account for the field alias
        */
       if (!theRelation.isCollection) {
-        projectedAttributes[theRelation.name] = {
-          name: theRelation.name,
+        projectedAttributes[fieldName] = {
+          name: fieldName,
           sourceName: theRelation.sourceName,
           type: "ID",
           unique: false
