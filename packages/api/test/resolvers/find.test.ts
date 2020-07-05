@@ -22,7 +22,26 @@ const typeDefs = `
         name: String
         url: String
         publisher: User! @relation
+
+        acl: ACL
+        limit: Limit
     }
+
+    type ACL {
+      disabled: Boolean
+    }
+
+    interface Limit {
+      when: String
+      how: String
+    }
+
+    type VideoLimit implements Limit {
+      when: String
+      how: String
+      url: String
+    }
+
 `;
 
 const users: Datasource = {
@@ -35,7 +54,13 @@ const users: Datasource = {
 };
 
 const videos: Datasource = {
-  select: jest.fn().mockResolvedValue([{ videoID: "new-video" }]),
+  select: jest.fn().mockResolvedValue([
+    {
+      videoID: "new-video",
+      acl: { disabled: false },
+      limit: { when: "now", url: "link_to_blocked_video" }
+    }
+  ]),
   create: jest.fn(),
   update: jest.fn(),
   delete: jest.fn()
@@ -85,6 +110,34 @@ describe("Schema Find Resolver", () => {
           \\"\\"\\"Deletion filter for videos\\"\\"\\"
           where: VideoFilter!
         ): VideoMutationResponse
+        createACL(data: [ACLInput!]!): ACLMutationResponse
+
+        \\"\\"\\"Update aCL\\"\\"\\"
+        updateACL(
+          \\"\\"\\"Update filter for aCL\\"\\"\\"
+          where: ACLFilter!
+          changes: ACLInput!
+        ): ACLMutationResponse
+
+        \\"\\"\\"Delete aCL\\"\\"\\"
+        deleteACL(
+          \\"\\"\\"Deletion filter for aCL\\"\\"\\"
+          where: ACLFilter!
+        ): ACLMutationResponse
+        createVideoLimits(data: [VideoLimitInput!]!): VideoLimitMutationResponse
+
+        \\"\\"\\"Update videoLimits\\"\\"\\"
+        updateVideoLimits(
+          \\"\\"\\"Update filter for videoLimits\\"\\"\\"
+          where: VideoLimitFilter!
+          changes: VideoLimitInput!
+        ): VideoLimitMutationResponse
+
+        \\"\\"\\"Delete videoLimits\\"\\"\\"
+        deleteVideoLimits(
+          \\"\\"\\"Deletion filter for videoLimits\\"\\"\\"
+          where: VideoLimitFilter!
+        ): VideoLimitMutationResponse
       }"
     `);
 
@@ -116,6 +169,32 @@ describe("Schema Find Resolver", () => {
           \\"\\"\\"Sort videos that will be returned\\"\\"\\"
           orderBy: VideoOrderBy
         ): [Video]!
+        findACL(
+          \\"\\"\\"Limit the number of aCL that will be returned\\"\\"\\"
+          limit: Int
+
+          \\"\\"\\"Skip the first number of aCL that will be returned\\"\\"\\"
+          skip: Int
+
+          \\"\\"\\"Filter condition for aCL that will be returned\\"\\"\\"
+          where: ACLFilter
+
+          \\"\\"\\"Sort aCL that will be returned\\"\\"\\"
+          orderBy: ACLOrderBy
+        ): [ACL]!
+        findVideoLimits(
+          \\"\\"\\"Limit the number of videoLimits that will be returned\\"\\"\\"
+          limit: Int
+
+          \\"\\"\\"Skip the first number of videoLimits that will be returned\\"\\"\\"
+          skip: Int
+
+          \\"\\"\\"Filter condition for videoLimits that will be returned\\"\\"\\"
+          where: VideoLimitFilter
+
+          \\"\\"\\"Sort videoLimits that will be returned\\"\\"\\"
+          orderBy: VideoLimitOrderBy
+        ): [VideoLimit]!
       }"
     `);
   });
@@ -194,6 +273,65 @@ describe("Schema Find Resolver", () => {
     expect(video.me).toMatchInlineSnapshot(`
       Object {
         "myEmail": "test@example.com",
+      }
+    `);
+  });
+
+  test("confirms non-relationship object types", async () => {
+    const query = `
+        query {
+            myVideos: findVideos {
+                name
+                acl {
+                  disabled
+                }
+            }
+        }
+    `;
+
+    const result = await graphql(schemaResult.schema, query);
+
+    expect(result.errors).toMatchInlineSnapshot(`undefined`);
+
+    const {
+      myVideos: [video]
+    } = result.data;
+
+    expect(video.acl).toMatchInlineSnapshot(`
+      Object {
+        "disabled": false,
+      }
+    `);
+  });
+
+  test("confirms interface resolution", async () => {
+    const query = `
+        query {
+            myVideos: findVideos {
+                name
+                limit {
+                  when
+
+                  ... on VideoLimit {
+                    url
+                  }
+                }
+            }
+        }
+    `;
+
+    const result = await graphql(schemaResult.schema, query);
+
+    expect(result.errors).toMatchInlineSnapshot(`undefined`);
+
+    const {
+      myVideos: [video]
+    } = result.data;
+
+    expect(video.limit).toMatchInlineSnapshot(`
+      Object {
+        "url": "link_to_blocked_video",
+        "when": "now",
       }
     `);
   });

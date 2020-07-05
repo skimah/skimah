@@ -1,4 +1,8 @@
-import { ObjectTypeComposer, SchemaComposer } from "graphql-compose";
+import {
+  ObjectTypeComposer,
+  SchemaComposer,
+  InterfaceTypeComposer
+} from "graphql-compose";
 import { nullSource } from "./datasource";
 import createInputFilter from "./filter";
 import createInput from "./inputs";
@@ -96,6 +100,19 @@ export default async (config: SkimahConfig): Promise<SkimahResult> => {
       datasources,
       type: <ObjectTypeComposer>tc,
       models
+    });
+
+    // Resolve interfaces
+    const objComposer = tc as ObjectTypeComposer;
+    objComposer.getInterfaces().forEach(itf => {
+      const itComposer = itf as InterfaceTypeComposer;
+
+      itComposer.addTypeResolver(objComposer, src => {
+        const objectFields = objComposer.getFieldNames();
+        const itfFields = Object.keys(src);
+        const isSubset = itfFields.every(field => objectFields.includes(field));
+        return isSubset;
+      });
     });
 
     /**
