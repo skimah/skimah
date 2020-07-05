@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/skimah/skimah/compare/@skimah/api@0.2.1...@skimah/api@0.3.0) (2020-07-05)
+
+
+### Features
+
+* **api:** added support for interface resolution ([8d2bd7f](https://github.com/skimah/skimah/commit/8d2bd7fd2cef34447cc3f076426360c88cfb6f6c))
+
+
+
+
+
 ## [0.2.1](https://github.com/skimah/skimah/compare/@skimah/api@0.2.0...@skimah/api@0.2.1) (2020-07-04)
 
 
