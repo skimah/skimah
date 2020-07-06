@@ -67,11 +67,14 @@ export default async (config: SkimahConfig): Promise<SkimahResult> => {
   );
 
   const models: { [key: string]: Model } = {};
+  const interfaces: { [key: string]: Model[] } = {};
 
   const modelsBySource: { [key: string]: Model[] } = {};
 
   const typeModels = Array.from(typeStorage.types.values()).filter(t => {
-    const isObject = t.getType().astNode.kind === "ObjectTypeDefinition";
+    const typeKind = t.getType().astNode.kind;
+    const isObject = typeKind === "ObjectTypeDefinition";
+
     return isObject && !DEFAULT_TYPES.includes(t.getTypeName());
   });
 
@@ -81,7 +84,6 @@ export default async (config: SkimahConfig): Promise<SkimahResult> => {
 
     // create models
     models[typeName] = createModel(<ObjectTypeComposer>tc);
-
     // add type input
     createInput(<ObjectTypeComposer>tc, schemaComposer);
 
@@ -99,13 +101,18 @@ export default async (config: SkimahConfig): Promise<SkimahResult> => {
       composer: schemaComposer,
       datasources,
       type: <ObjectTypeComposer>tc,
-      models
+      models,
+      interfaces
     });
 
     // Resolve interfaces
     const objComposer = tc as ObjectTypeComposer;
     objComposer.getInterfaces().forEach(itf => {
       const itComposer = itf as InterfaceTypeComposer;
+
+      interfaces[itComposer.getTypeName()] = (
+        interfaces[itComposer.getTypeName()] || []
+      ).concat(models[typeName]);
 
       itComposer.addTypeResolver(objComposer, src => {
         const objectFields = objComposer.getFieldNames();

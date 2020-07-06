@@ -49,7 +49,7 @@ import { RelationCondition } from "../types";
  *
  */
 export default (definition: ResolverDefinition): string => {
-  const { type: tc, models, datasources } = definition;
+  const { type: tc, models, datasources, interfaces } = definition;
 
   const resolverName = getPluralName(`find${tc.getTypeName()}`);
 
@@ -140,7 +140,8 @@ export default (definition: ResolverDefinition): string => {
       const queryModel = createSelection({
         models,
         baseModel,
-        tree
+        tree,
+        interfaces
       });
 
       /**

@@ -18,6 +18,8 @@ export interface ResolverDefinition {
   type: ObjectTypeComposer;
 
   models: { [key: string]: Model };
+
+  interfaces: { [key: string]: Model[] };
 }
 
 /**

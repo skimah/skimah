@@ -20,9 +20,17 @@ const typeDefs = `
         comments: [Comment] @relation(field: "video")
     }
 
-    type Status {
+    interface Status {
       id: ID
       created_at: String
+
+      vid: Video
+    }
+
+    type VideoStatus implements Status {
+      id: ID
+      created_at: String
+      valid: Boolean
 
       vid: Video @relation @named(as: "video")
     }
@@ -43,10 +51,10 @@ const typeDefs = `
       Mammal 
     }
 
-    union Result = Comment | Status
+    union Result = Comment | VideoStatus
 
     type Query {
-        hello: String
+      hello: String
     }
 `;
 

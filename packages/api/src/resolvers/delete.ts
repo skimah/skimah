@@ -18,7 +18,7 @@ import { ResolverDefinition } from "./index";
  * @param definition {ResolverDefinition}
  */
 export default (definition: ResolverDefinition): string => {
-  const { type: tc, models, datasources } = definition;
+  const { type: tc, models, datasources, interfaces } = definition;
   const typeName = tc.getTypeName();
   const pluralName = getPluralName(typeName);
 
@@ -53,7 +53,8 @@ export default (definition: ResolverDefinition): string => {
         const queryModel = createSelection({
           baseModel,
           tree: { ...recordProjection, args: tree.args },
-          models
+          models,
+          interfaces
         });
         const records = await datasource.select(queryModel);
         const deleted = await datasource.delete(

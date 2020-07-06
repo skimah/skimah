@@ -1,5 +1,9 @@
 import { GraphQLResolveInfo, GraphQLSchema } from "graphql";
-import { SchemaComposer } from "graphql-compose";
+import {
+  InterfaceTypeComposer,
+  ObjectTypeComposer,
+  SchemaComposer
+} from "graphql-compose";
 
 /**
  * @internal
@@ -448,6 +452,11 @@ export interface SkimahResult {
    */
   schemaComposer: SchemaComposer<any>;
 }
+
+export type DefinedType =
+  | InterfaceTypeComposer<any, any>
+  | ObjectTypeComposer<any, any>
+  | InterfaceTypeComposer<any, any>;
 
 /**
  * Generate an API from schema

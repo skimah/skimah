@@ -1,14 +1,14 @@
 import {
   ComposeNamedOutputType,
   DirectiveArgs,
-  ObjectTypeComposer,
+  ObjectTypeComposerFieldConfig,
   schemaComposer,
-  unwrapOutputTC,
-  ObjectTypeComposerFieldConfig
+  unwrapOutputTC
 } from "graphql-compose";
 import {
   Attribute,
   AttributeType,
+  DefinedType,
   Model,
   Relation,
   RelationCondition
@@ -23,7 +23,7 @@ const isFieldUnique = (
 };
 
 const getSourceNameForField = (
-  parent: ObjectTypeComposer,
+  parent: DefinedType,
   fieldName: string
 ): string => {
   const fieldDirective = parent.getFieldDirectiveByName(fieldName, "named");
@@ -33,7 +33,7 @@ const getSourceNameForField = (
 /**
  * Retrieve the type identity field
  */
-const typeIdentity = (tc: ObjectTypeComposer): string => {
+const typeIdentity = (tc: DefinedType): string => {
   const [uniqueField] = tc.getFieldNames().filter(fieldName => {
     return isFieldUnique(
       tc.getFieldTC(fieldName),
@@ -49,7 +49,7 @@ const typeIdentity = (tc: ObjectTypeComposer): string => {
 };
 
 const getFieldByTypeName = (
-  tc: ObjectTypeComposer,
+  tc: DefinedType,
   typeName: string
 ): [string, ObjectTypeComposerFieldConfig<any, any, any>] => {
   const [firstFieldByType] = Object.entries(tc.getFields()).filter(
@@ -73,12 +73,12 @@ const relationships = {
    */
   oneToManyByDirective: (
     relationField: string,
-    parentOTC: ObjectTypeComposer,
+    parentOTC: DefinedType,
     parentField: string
   ): RelationCondition => {
     const parentUniqueField = typeIdentity(parentOTC);
 
-    const childOTC = parentOTC.getFieldOTC(parentField);
+    const childOTC = parentOTC.getFieldTC(parentField) as DefinedType;
 
     return {
       parent: {
@@ -98,12 +98,12 @@ const relationships = {
    * This type of relationship must be by-directional
    */
   oneToManyByType: (
-    parentOTC: ObjectTypeComposer,
+    parentOTC: DefinedType,
     parentField: string
   ): RelationCondition => {
     const parentUniqueField = typeIdentity(parentOTC);
 
-    const childOTC = parentOTC.getFieldOTC(parentField);
+    const childOTC = parentOTC.getFieldTC(parentField) as DefinedType;
 
     try {
       const [parentInsideChild] = getFieldByTypeName(
@@ -132,10 +132,10 @@ const relationships = {
    */
   oneToOneByDirective: (
     relationField: string,
-    parentOTC: ObjectTypeComposer,
+    parentOTC: DefinedType,
     parentField: string
   ): RelationCondition => {
-    const childOTC = parentOTC.getFieldOTC(parentField);
+    const childOTC = parentOTC.getFieldTC(parentField) as DefinedType;
 
     return {
       parent: {
@@ -153,10 +153,10 @@ const relationships = {
    * This is useful when the `@relation`'s field parameter is omitted
    */
   oneToOneByType: (
-    parentOTC: ObjectTypeComposer,
+    parentOTC: DefinedType,
     parentField: string
   ): RelationCondition => {
-    const childOTC = parentOTC.getFieldOTC(parentField);
+    const childOTC = parentOTC.getFieldTC(parentField) as DefinedType;
 
     try {
       const childUniqueIdentity = typeIdentity(childOTC);
@@ -179,7 +179,7 @@ const relationships = {
   }
 };
 
-export default (tc: ObjectTypeComposer): Model => {
+export default (tc: DefinedType): Model => {
   const attributes: { [key: string]: Attribute } = {};
   const identities: Attribute[] = [];
   const relations: { [key: string]: Relation } = {};

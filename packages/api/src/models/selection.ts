@@ -4,8 +4,8 @@ import {
   Criteria,
   CriteriaFilter,
   Model,
-  Relation,
-  QueryModel
+  QueryModel,
+  Relation
 } from "../types";
 
 /**
@@ -77,6 +77,7 @@ export const argsToCriteria = (
 interface SelectionArg {
   baseModel: Model;
   models: { [key: string]: Model };
+  interfaces: { [key: string]: Model[] };
   tree: ResolveTree;
 }
 
@@ -89,7 +90,8 @@ interface SelectionArg {
 const createQueryModel = ({
   baseModel,
   tree,
-  models
+  models,
+  interfaces
 }: SelectionArg): QueryModel => {
   const projectedAttributes: { [key: string]: Attribute } = {};
   const projectedRelations: { [key: string]: Relation } = {};
@@ -107,7 +109,59 @@ const createQueryModel = ({
       );
     } else {
       const theRelation = baseModel.relations[fieldTree.name];
-      const relationModel = models[theRelation.type];
+      let relationModel = models[theRelation.type];
+
+      /**
+       * There are a 2 reasons why a relationModel could be undefined/null
+       *
+       * 1. If the relation is an interface
+       *
+       * 2. if the relation is a union type
+       *
+       * Then we need to manually resolve what type (model) should be used
+       * for the relational model based on the requested fields
+       */
+      if (!relationModel) {
+        const nonObjectRequestedFields = Object.keys(
+          fieldTree.fieldsByTypeName[theRelation.type]
+        );
+        const nonObjectTypeName = theRelation.type;
+        const interfaceModels = interfaces[nonObjectTypeName] || [];
+
+        /**
+         * Using the field comparison, we will pick the first model
+         * that matches the requested fields for the interface
+         */
+        const [interfaceModel] = interfaceModels.filter(itrModel => {
+          const allModelFields = Object.keys(itrModel.attributes).concat(
+            Object.keys(itrModel.relations)
+          );
+
+          return nonObjectRequestedFields.every(itrField =>
+            allModelFields.includes(itrField)
+          );
+        });
+
+        /**
+         * If no object type has implemented the interface
+         * then We will throw an error because we don't know how to source
+         * the model
+         */
+        if (!interfaceModel) {
+          throw new Error(
+            `Can not find any implementation for interface ${nonObjectTypeName}`
+          );
+        }
+
+        relationModel = interfaceModel;
+
+        // console.log(
+        //   theRelation.type,
+        //   theRelation.name,
+        //   fieldTree.fieldsByTypeName[theRelation.type],
+        //   interfaceModel
+        // );
+      }
 
       /**
        * For one-to-one relationships, an attribute should be added to
@@ -139,7 +193,8 @@ const createQueryModel = ({
           model: createQueryModel({
             baseModel: relationModel,
             models,
-            tree: fieldTree
+            tree: fieldTree,
+            interfaces
           })
         });
 

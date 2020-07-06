@@ -54,9 +54,14 @@ export default (
     const fieldTypeName = fieldTC.getTypeName();
 
     const parentModel = models[tc.getTypeName()];
+
     const fieldModel = models[fieldTypeName];
 
-    if (isRelation && isNonScalar) {
+    /**
+     * It is possible that fieldModel might not be an ObjectType but
+     * instead an interface or a union type that will be resolved at runtime
+     */
+    if (isRelation && isNonScalar && fieldModel) {
       const differentDatasources =
         parentModel.datasource !== fieldModel.datasource;
 

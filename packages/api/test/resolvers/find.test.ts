@@ -24,7 +24,8 @@ const typeDefs = `
         publisher: User! @relation
 
         acl: ACL
-        limit: Limit
+        limit: Limit @relation
+        uploadLimits: [Limit] @relation
     }
 
     type ACL {
@@ -32,14 +33,29 @@ const typeDefs = `
     }
 
     interface Limit {
+      id: ID
       when: String
       how: String
+
+      video: Video @relation
     }
 
     type VideoLimit implements Limit {
+      id: ID
       when: String
       how: String
       url: String
+
+      video: Video @relation
+    }
+
+     type UploadLimit implements Limit @datasource(name: "uploadLimits") {
+      id: ID
+      when: String
+      how: String
+      count: Int
+
+      video: Video @relation
     }
 
 `;
@@ -58,9 +74,17 @@ const videos: Datasource = {
     {
       videoID: "new-video",
       acl: { disabled: false },
-      limit: { when: "now", url: "link_to_blocked_video" }
+      limit: { when: "now", url: "link_to_blocked_video" },
+      uploadLimits: [{ when: "now", count: 5 }]
     }
   ]),
+  create: jest.fn(),
+  update: jest.fn(),
+  delete: jest.fn()
+};
+
+const uploadLimits: Datasource = {
+  select: jest.fn().mockResolvedValue([{ when: "now", count: 5 }]),
   create: jest.fn(),
   update: jest.fn(),
   delete: jest.fn()
@@ -73,6 +97,7 @@ describe("Schema Find Resolver", () => {
     schemaResult = await generate({
       typeDefs,
       sources: {
+        uploadLimits,
         users,
         videos
       }
@@ -138,6 +163,20 @@ describe("Schema Find Resolver", () => {
           \\"\\"\\"Deletion filter for videoLimits\\"\\"\\"
           where: VideoLimitFilter!
         ): VideoLimitMutationResponse
+        createUploadLimits(data: [UploadLimitInput!]!): UploadLimitMutationResponse
+
+        \\"\\"\\"Update uploadLimits\\"\\"\\"
+        updateUploadLimits(
+          \\"\\"\\"Update filter for uploadLimits\\"\\"\\"
+          where: UploadLimitFilter!
+          changes: UploadLimitInput!
+        ): UploadLimitMutationResponse
+
+        \\"\\"\\"Delete uploadLimits\\"\\"\\"
+        deleteUploadLimits(
+          \\"\\"\\"Deletion filter for uploadLimits\\"\\"\\"
+          where: UploadLimitFilter!
+        ): UploadLimitMutationResponse
       }"
     `);
 
@@ -195,6 +234,19 @@ describe("Schema Find Resolver", () => {
           \\"\\"\\"Sort videoLimits that will be returned\\"\\"\\"
           orderBy: VideoLimitOrderBy
         ): [VideoLimit]!
+        findUploadLimits(
+          \\"\\"\\"Limit the number of uploadLimits that will be returned\\"\\"\\"
+          limit: Int
+
+          \\"\\"\\"Skip the first number of uploadLimits that will be returned\\"\\"\\"
+          skip: Int
+
+          \\"\\"\\"Filter condition for uploadLimits that will be returned\\"\\"\\"
+          where: UploadLimitFilter
+
+          \\"\\"\\"Sort uploadLimits that will be returned\\"\\"\\"
+          orderBy: UploadLimitOrderBy
+        ): [UploadLimit]!
       }"
     `);
   });
@@ -304,7 +356,7 @@ describe("Schema Find Resolver", () => {
     `);
   });
 
-  test("confirms interface resolution", async () => {
+  test("confirms one-to-one interface resolution", async () => {
     const query = `
         query {
             myVideos: findVideos {
@@ -333,6 +385,39 @@ describe("Schema Find Resolver", () => {
         "url": "link_to_blocked_video",
         "when": "now",
       }
+    `);
+  });
+
+  test("confirms one-to-many interface resolution", async () => {
+    const query = `
+        query {
+            myVideos: findVideos {
+                name
+                uploadLimits {
+                  when
+                  ... on UploadLimit {
+                    count
+                  }
+                }
+            }
+        }
+    `;
+
+    const result = await graphql(schemaResult.schema, query);
+
+    expect(result.errors).toMatchInlineSnapshot(`undefined`);
+
+    const {
+      myVideos: [video]
+    } = result.data;
+
+    expect(video.uploadLimits).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "count": 5,
+          "when": "now",
+        },
+      ]
     `);
   });
 
