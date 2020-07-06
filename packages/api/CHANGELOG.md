@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/skimah/skimah/compare/@skimah/api@0.3.0...@skimah/api@0.3.1) (2020-07-06)
+
+
+### Bug Fixes
+
+* **api:** fixed the bug that does not resolve types referenced as interfaces ([12578b0](https://github.com/skimah/skimah/commit/12578b0281d06ab03bee5c236ff073b80c4f5c06))
+
+
+
+
+
 # [0.3.0](https://github.com/skimah/skimah/compare/@skimah/api@0.2.1...@skimah/api@0.3.0) (2020-07-05)
 
 
