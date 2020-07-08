@@ -154,13 +154,6 @@ const createQueryModel = ({
         }
 
         relationModel = interfaceModel;
-
-        // console.log(
-        //   theRelation.type,
-        //   theRelation.name,
-        //   fieldTree.fieldsByTypeName[theRelation.type],
-        //   interfaceModel
-        // );
       }
 
       /**
