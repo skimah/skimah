@@ -137,12 +137,18 @@ export default class implements Datasource {
     models.forEach(model => {
       const sourceRecord = {};
       const inputRecord = {};
+
+      const [id] = model.identities;
+
+      if (!id) {
+        throw new Error(`${model.name} does not have a unique field`);
+      }
+
       Object.values(model.mutatedAttributes).forEach(attr => {
         sourceRecord[attr.sourceName] = attr.value;
         inputRecord[attr.name] = attr.value;
       });
 
-      const [id] = model.identities;
       affectedRecordIDs.push(model.mutatedAttributes[id.name].value);
 
       inputRecords.push(inputRecord);
