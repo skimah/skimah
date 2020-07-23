@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/skimah/skimah/compare/@skimah/ds-json@0.1.0...@skimah/ds-json@0.1.1) (2020-07-23)
+
+
+### Bug Fixes
+
+* **ds-json:** empty criteria bug ([41de17c](https://github.com/skimah/skimah/commit/41de17c8300afb63b89201179bdd57d07716b7b5))
+* **ds-json:** enforce id field for json datasource ([0becc1d](https://github.com/skimah/skimah/commit/0becc1d9a7c8c7d14bd94d1fc56b2a2c5d574bcf))
+
+
+
+
+
 # [0.1.0](https://github.com/skimah/skimah/compare/@skimah/ds-json@0.1.0-alpha.9...@skimah/ds-json@0.1.0) (2020-06-30)
 
 **Note:** Version bump only for package @skimah/ds-json

@@ -1,6 +1,6 @@
 {
   "name": "@skimah/ds-csv",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Skimah CSV Datasource",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -37,7 +37,7 @@
   },
   "gitHead": "a6edc2e9d8b37ed5a57f352942f2dc7eae495dc2",
   "dependencies": {
-    "@skimah/ds-json": "^0.1.0",
+    "@skimah/ds-json": "^0.1.1",
     "d3-dsv": "^1.2.0"
   }
 }
