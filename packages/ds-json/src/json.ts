@@ -95,11 +95,13 @@ export default class implements Datasource {
     };
 
     if (criteria.and.length) {
-      Object.assign(query, { $and: covertFilters(criteria.and) });
+      const and = criteria.and.filter(c => Object.keys(c).length);
+      Object.assign(query, { $and: covertFilters(and) });
     }
 
     if (criteria.or.length) {
-      Object.assign(query, { $or: covertFilters(criteria.or) });
+      const or = criteria.and.filter(c => Object.keys(c).length);
+      Object.assign(query, { $or: covertFilters(or) });
     }
 
     return query;
