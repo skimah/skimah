@@ -24,7 +24,7 @@
     "build": "yarn build:api && yarn build:ds-json && yarn build:ds-csv && yarn build:ds-faker",
     "pretty": "prettier --write packages/**/*.{ts,js,yaml} site/**/*.{ts, tsx}",
     "lint": "eslint packages/**/src/**/*.ts",
-    "publish": "lerna publish",
+    "lerna-publish": "lerna publish",
     "prerelease": "lerna publish --conventional-prerelease"
   },
   "dependencies": {
