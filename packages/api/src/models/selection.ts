@@ -102,10 +102,9 @@ const createQueryModel = ({
   for (const [fieldName, fieldTree] of Object.entries(fields)) {
     if (baseModel.attributes[fieldTree.name]) {
       // account for GraphQL field aliasing
-
       projectedAttributes[fieldName] = Object.assign(
-        baseModel.attributes[fieldTree.name],
-        { name: fieldName }
+        {},
+        baseModel.attributes[fieldTree.name]
       );
     } else {
       const theRelation = baseModel.relations[fieldTree.name];
@@ -114,7 +113,7 @@ const createQueryModel = ({
       /**
        * There are a 2 reasons why a relationModel could be undefined/null
        *
-       * 1. If the relation is an interface
+       * 1. if the relation is an interface
        *
        * 2. if the relation is a union type
        *
@@ -164,8 +163,8 @@ const createQueryModel = ({
        * Also account for the field alias
        */
       if (!theRelation.isCollection) {
-        projectedAttributes[fieldName] = {
-          name: fieldName,
+        projectedAttributes[fieldTree.name] = {
+          name: fieldTree.name,
           sourceName: theRelation.sourceName,
           type: "ID",
           unique: false
