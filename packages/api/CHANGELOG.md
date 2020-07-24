@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/skimah/skimah/compare/@skimah/api@0.3.2...@skimah/api@0.3.3) (2020-07-24)
+
+
+### Bug Fixes
+
+* fixed the field alias bug in the selection ([1e3efe5](https://github.com/skimah/skimah/commit/1e3efe5c4763d24f234c79234405a58aea813141))
+
+
+
+
+
 ## [0.3.2](https://github.com/skimah/skimah/compare/@skimah/api@0.3.1...@skimah/api@0.3.2) (2020-07-23)
 
 **Note:** Version bump only for package @skimah/api
